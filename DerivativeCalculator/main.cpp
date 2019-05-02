@@ -122,13 +122,13 @@ void readLine(std::string file)
             //final validity check
             if(check(expression,"x")!=-1 && !ifMultipleX(expression))
             {
-                std::cout << expression << std::endl;
+                std::cout << "Element ->" << expression << std::endl;
             }
             if(check(output,"x")!=-1 && !ifMultipleX(output)
                && !(check(output.substr(1),"+") != -1 || check(output.substr(1),"-") != -1)
                && output[0] != ' ')
             {
-                std::cout << output <<std::endl;
+                std::cout << "Element ->" << output <<std::endl;
             }
         }
     }
