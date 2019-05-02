@@ -84,6 +84,7 @@ public:
     
     //add
     void addNode(Node *pNode);
+    void addNode(std::string expr);
     
     //count/traverse
     int calculateCount();

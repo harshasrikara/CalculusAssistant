@@ -15,11 +15,11 @@
 #include "linkedList.hpp"
 
 std::string readFile(std::string filename);
-void readLine(std::string file);
+void readLine(std::string file, LinkedList derivativeCalc);
 std::string readExpression(std::string output);
 int check(std::string row,std::string wordToBeFound);
 bool ifMultipleX(std::string file);
-bool ifMultipleOperator(std::string file);
+void insertNode(std::string file, LinkedList derivativeCalc);
 
 int main(int argc, const char * argv[]) {
     
@@ -40,7 +40,9 @@ int main(int argc, const char * argv[]) {
         
         std::cout<<extractedData<<std::endl;
         
-        readLine(extractedData);
+        LinkedList derivativeCalculator;
+        
+        readLine(extractedData, derivativeCalculator);
     }
     return 0;
 }
@@ -73,7 +75,7 @@ std::string readFile(std::string filename)
     return output;
 }
 
-void readLine(std::string file)
+void readLine(std::string file, LinkedList derivativeCalc)
 {
     //converts the string into a stream of characters. Easier to go through line by line.
     std::istringstream lineFinder(file);
@@ -82,13 +84,6 @@ void readLine(std::string file)
     //cycle through all the lines in a string
     for (std::string line; std::getline(lineFinder, line);)
     {
-        //variables for creating the node
-        
-        //int outerCoeff = 1; //default
-        //int innerCoeff = 1; //default
-        //int exponent = 1; //default
-        //std::string trigId = "";
-        
         output = line;
         //adds a qualifying + sign to the beginning
         if(isdigit(output[0]) || output[0] == 's' || output[0] == 'c' || output[0] == 'x')
@@ -106,32 +101,41 @@ void readLine(std::string file)
             break;
         }
         std::cout << "Original Equation ->" << output <<std::endl;
-        
-        //BIG ERROR SOMEWHERE AROUND HERE
+
         while(check(output.substr(1),"+") != -1 || check(output.substr(1),"-") != -1)
         {
             std::string expression;
             if(check(output,"x") != -1)
             {
                 expression = readExpression(output);
+                output = output.substr(expression.length());
+                
+                //debug statements
                 //std::cout << "expression ->" << expression <<std::endl;
                 //std::cout << expression.length();
-                output = output.substr(expression.length());
                 //std::cout << check(output,"x") << "remaining part ->" << output <<std::endl;
             }
+            
             //final validity check
             if(check(expression,"x")!=-1 && !ifMultipleX(expression))
             {
-                std::cout << "Element ->" << expression << std::endl;
+                insertNode(expression,derivativeCalc);
+                //std::cout << "Element ->" << expression << std::endl;
             }
             if(check(output,"x")!=-1 && !ifMultipleX(output)
                && !(check(output.substr(1),"+") != -1 || check(output.substr(1),"-") != -1)
                && output[0] != ' ')
             {
-                std::cout << "Element ->" << output <<std::endl;
+                insertNode(output, derivativeCalc);
+                //std::cout << "Element ->" << output <<std::endl;
             }
         }
     }
+}
+void insertNode(std::string file, LinkedList derivativeCalc)
+{
+    derivativeCalc.addNode(file);
+    std::cout << "Element ->" << file <<std::endl;
 }
 
 std::string readExpression(std::string output)
@@ -191,19 +195,6 @@ bool ifMultipleX(std::string file)
     }
     return false;
 }
-bool ifMultipleOperator(std::string file)
-{
-    int t = 0;
-    for(char c:file) //for each character in str
-    {
-        if(c == 'x')
-        {
-            t++;
-        }
-    }
-    return false;
-}
-
 //checks if one string is a substring of another and if yes returns the index of the first character else -1
 int check(std::string row,std::string wordToBeFound)
 {

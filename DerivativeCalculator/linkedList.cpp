@@ -212,6 +212,13 @@ void LinkedList::addNode(Node *pNode)
         return;
     }
 }
+void LinkedList::addNode(std::string expr)
+{
+    int outer = 1;
+    int inner = 1;
+    int exp = 1;
+    std::string trigId = "";
+}
 
 //count/traverse
 int LinkedList::calculateCount()
