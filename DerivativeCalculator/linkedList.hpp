@@ -50,6 +50,13 @@ public:
     void setDenominator(int);
     void setTrigIdentifier(std::string);
     void setNextNode(Node*);
+    int check(std::string row,std::string wordToBeFound);
+    
+    //print
+    void print();
+    std::ostream &print(std::ostream &out);
+    void debug();
+    std::ostream &debug(std::ostream &out) const;
     
     //functions
     void derive();
@@ -86,10 +93,17 @@ public:
     void addNode(Node *pNode);
     void addNode(std::string expr);
     
-    //count/traverse
+    //count/traverse/helper functions
     int calculateCount();
     void traverse(void (*function)(Node *));
     bool isEmpty();
+    void print();
+    void print() const;
+    std::ostream &print(std::ostream &out);
+    std::ostream &print(std::ostream &out) const;
+    int check(std::string row,std::string wordToBeFound);
 };
+
+std::ostream &operator<<(std::ostream &out, const LinkedList &link);
 
 #endif /* linkedList_hpp */

@@ -15,11 +15,11 @@
 #include "linkedList.hpp"
 
 std::string readFile(std::string filename);
-void readLine(std::string file, LinkedList derivativeCalc);
+void readLine(std::string file, LinkedList &derivativeCalc);
 std::string readExpression(std::string output);
 int check(std::string row,std::string wordToBeFound);
 bool ifMultipleX(std::string file);
-void insertNode(std::string file, LinkedList derivativeCalc);
+void insertNode(std::string file, LinkedList &derivativeCalc);
 
 int main(int argc, const char * argv[]) {
     
@@ -75,7 +75,7 @@ std::string readFile(std::string filename)
     return output;
 }
 
-void readLine(std::string file, LinkedList derivativeCalc)
+void readLine(std::string file, LinkedList &derivativeCalc)
 {
     //converts the string into a stream of characters. Easier to go through line by line.
     std::istringstream lineFinder(file);
@@ -84,6 +84,8 @@ void readLine(std::string file, LinkedList derivativeCalc)
     //cycle through all the lines in a string
     for (std::string line; std::getline(lineFinder, line);)
     {
+        derivativeCalc.clearList();
+        
         output = line;
         //adds a qualifying + sign to the beginning
         if(isdigit(output[0]) || output[0] == 's' || output[0] == 'c' || output[0] == 'x')
@@ -100,7 +102,8 @@ void readLine(std::string file, LinkedList derivativeCalc)
         {
             break;
         }
-        std::cout << "Original Equation ->" << output <<std::endl;
+        
+        //std::cout << "Original Equation ->" << output <<std::endl;
 
         while(check(output.substr(1),"+") != -1 || check(output.substr(1),"-") != -1)
         {
@@ -119,7 +122,7 @@ void readLine(std::string file, LinkedList derivativeCalc)
             //final validity check
             if(check(expression,"x")!=-1 && !ifMultipleX(expression))
             {
-                insertNode(expression,derivativeCalc);
+                insertNode(expression, derivativeCalc);
                 //std::cout << "Element ->" << expression << std::endl;
             }
             if(check(output,"x")!=-1 && !ifMultipleX(output)
@@ -130,12 +133,14 @@ void readLine(std::string file, LinkedList derivativeCalc)
                 //std::cout << "Element ->" << output <<std::endl;
             }
         }
+        //std::cout<<derivativeCalc.getCount()<<std::endl;
+        std::cout<<derivativeCalc<<std::endl;
     }
 }
-void insertNode(std::string file, LinkedList derivativeCalc)
+void insertNode(std::string file, LinkedList &derivativeCalc)
 {
     derivativeCalc.addNode(file);
-    std::cout << "Element ->" << file <<std::endl;
+    //std::cout << "Element ->" << file <<std::endl;
 }
 
 std::string readExpression(std::string output)
