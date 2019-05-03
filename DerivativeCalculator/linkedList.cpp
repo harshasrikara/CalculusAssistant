@@ -28,6 +28,7 @@ Node::Node(int outer, int inner, int exp, std::string trig)
     nextNode = nullptr;
     numerator = 0;
     denominator = 0;
+    derive();
 }
 Node::Node(int outer, int inner, int exp, std::string trig, Node * pNext)
 {
@@ -119,6 +120,55 @@ void Node::setNextNode(Node* pNext)
 {
     nextNode = pNext;
 }
+void Node::print()
+{
+    print(std::cout);
+}
+std::ostream& Node::print(std::ostream &out) const
+{
+    std::string output;
+    if(trigIdentifier!="")
+    {
+        output = output + trigIdentifier;
+        if(innerCoefficient!=1)
+        {
+            output = output + " " + std::to_string(innerCoefficient) + "x";
+        }
+        else
+        {
+            output = output + " x";
+        }
+    }
+    else
+    {
+        if(exponent!=0)
+        {
+            output = output + "x";
+        }
+    }
+    if(outerCoefficient!=1)
+    {
+        if(outerCoefficient < 0)
+        {
+            output = "- " + std::to_string(outerCoefficient*-1) + output;
+        }
+        else
+        {
+            output = "+ " + std::to_string(outerCoefficient) + output;
+        }
+    }
+    else
+    {
+        output = "+ " + output;
+    }
+    
+    if(exponent!=1 && exponent!=0)
+    {
+        output = output + "^" + std::to_string(exponent);
+    }
+    out<<output+ " ";
+    return out;
+}
 
 void Node::debug()
 {
@@ -192,7 +242,7 @@ int Node::check(std::string row,std::string wordToBeFound)
 //ostream operator overload
 std::ostream &operator<<(std::ostream &out, const Node &node)
 {
-    return node.debug(out);
+    return node.print(out);
 }
 
 //LINKED LIST CLASS
@@ -429,7 +479,7 @@ std::ostream &LinkedList::print(std::ostream &out) const
     {
         //std::cout<<"Entered"<<std::endl;
 
-        out << *hold << std::endl;
+        out << *hold;
         hold = hold->getNextNode();
     }
     return out;

@@ -38,7 +38,7 @@ int main(int argc, const char * argv[]) {
         std::string extractedData;
         extractedData = readFile(file);
         
-        std::cout<<extractedData<<std::endl;
+        //std::cout<<extractedData<<std::endl;
         
         LinkedList derivativeCalculator;
         
@@ -103,7 +103,7 @@ void readLine(std::string file, LinkedList &derivativeCalc)
             break;
         }
         
-        //std::cout << "Original Equation ->" << output <<std::endl;
+        std::cout << "Original Equation ->" << output <<std::endl;
 
         while(check(output.substr(1),"+") != -1 || check(output.substr(1),"-") != -1)
         {
@@ -134,7 +134,7 @@ void readLine(std::string file, LinkedList &derivativeCalc)
             }
         }
         //std::cout<<derivativeCalc.getCount()<<std::endl;
-        std::cout<<derivativeCalc<<std::endl;
+        std::cout<< "Derivative ->" << derivativeCalc<<std::endl;
     }
 }
 void insertNode(std::string file, LinkedList &derivativeCalc)

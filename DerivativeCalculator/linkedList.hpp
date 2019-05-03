@@ -54,7 +54,7 @@ public:
     
     //print
     void print();
-    std::ostream &print(std::ostream &out);
+    std::ostream &print(std::ostream &out) const;
     void debug();
     std::ostream &debug(std::ostream &out) const;
     
