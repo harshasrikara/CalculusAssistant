@@ -40,6 +40,7 @@ public:
     int getNumerator() const;
     int getDenominator() const;
     std::string getTrigIdentifier() const;
+    std::string getExpression() const;
     Node * getNextNode() const;
     
     //setters
@@ -60,6 +61,7 @@ public:
     
     //functions
     void derive();
+    void setExpression();
 };
 
 std::ostream &operator<<(std::ostream &out, const Node &node);

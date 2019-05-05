@@ -29,6 +29,7 @@ Node::Node(int outer, int inner, int exp, std::string trig)
     numerator = 0;
     denominator = 0;
     derive();
+    setExpression();
 }
 Node::Node(int outer, int inner, int exp, std::string trig, Node * pNext)
 {
@@ -82,6 +83,10 @@ int Node::getDenominator() const
 {
     return denominator;
 }
+std::string Node::getExpression() const
+{
+    return outputExpr;
+}
 std::string Node::getTrigIdentifier() const
 {
     return trigIdentifier;
@@ -124,7 +129,7 @@ void Node::print()
 {
     print(std::cout);
 }
-std::ostream& Node::print(std::ostream &out) const
+void Node::setExpression()
 {
     std::string output;
     if(trigIdentifier!="")
@@ -166,7 +171,12 @@ std::ostream& Node::print(std::ostream &out) const
     {
         output = output + "^" + std::to_string(exponent);
     }
-    out<<output+ " ";
+    output = output + " ";
+    outputExpr = output;
+}
+std::ostream& Node::print(std::ostream &out) const
+{
+    out<<outputExpr;
     return out;
 }
 
@@ -218,7 +228,6 @@ void Node::derive()
     }
     outerCoefficient = outerCoefficient*exponent;
     exponent = exponent-1;
-    //figure out eventually
 }
 
 int Node::check(std::string row,std::string wordToBeFound)
