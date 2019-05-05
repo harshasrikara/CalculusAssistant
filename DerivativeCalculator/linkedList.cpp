@@ -452,6 +452,21 @@ void LinkedList::traverse(void (*function)(Node *))
         ptr = ptr->getNextNode();
     }
 }
+void LinkedList::sort()
+{
+    
+}
+void LinkedList::reverse()
+{
+    LinkedList nList;
+    Node * temp = head;
+    while(temp!=nullptr)
+    {
+        nList.addNode(temp);
+        temp = temp->getNextNode();
+    }
+    head = nList.getHead();
+}
 bool LinkedList::isEmpty()
 {
     if(expressionCount==0)
@@ -510,6 +525,20 @@ int LinkedList::check(std::string row,std::string wordToBeFound)
         checkStart +=1;
     }
     return -1;
+}
+Node& LinkedList::operator[](int i)
+{
+    if(i>=expressionCount || i<0)
+    {
+        return blank;
+    }
+    Node * temp = head;
+    while(i!=0)
+    {
+        temp = temp->getNextNode();
+        i--;
+    }
+    return *temp;
 }
 
 std::ostream &operator<<(std::ostream &out, const LinkedList &link)

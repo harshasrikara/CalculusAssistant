@@ -43,6 +43,8 @@ int main(int argc, const char * argv[]) {
         LinkedList derivativeCalculator;
         
         readLine(extractedData, derivativeCalculator);
+        
+        
     }
     return 0;
 }
@@ -135,6 +137,8 @@ void readLine(std::string file, LinkedList &derivativeCalc)
         }
         //std::cout<<derivativeCalc.getCount()<<std::endl;
         std::cout<< "Derivative ->" << derivativeCalc<<std::endl;
+        
+        //std::cout<<derivativeCalc[0]<<std::endl;
     }
 }
 void insertNode(std::string file, LinkedList &derivativeCalc)

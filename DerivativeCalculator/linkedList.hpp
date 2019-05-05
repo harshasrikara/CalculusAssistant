@@ -70,6 +70,7 @@ class LinkedList
 {
 private:
     Node * head;
+    Node blank; //this node that contains all values initialized to 0 will be returned with [] if out of bounds.
     int expressionCount;
     
 public:
@@ -101,9 +102,13 @@ public:
     bool isEmpty();
     void print();
     void print() const;
+    void sort();
+    void reverse();
     std::ostream &print(std::ostream &out);
     std::ostream &print(std::ostream &out) const;
     int check(std::string row,std::string wordToBeFound);
+    
+    Node& operator[](int i);
 };
 
 std::ostream &operator<<(std::ostream &out, const LinkedList &link);
