@@ -136,6 +136,7 @@ void readLine(std::string file, LinkedList &derivativeCalc)
             }
         }
         //std::cout<<derivativeCalc.getCount()<<std::endl;
+        derivativeCalc.sort();
         std::cout<< "Derivative ->" << derivativeCalc<<std::endl;
         
         //std::cout<<derivativeCalc[0]<<std::endl;

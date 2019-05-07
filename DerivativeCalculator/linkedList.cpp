@@ -454,8 +454,34 @@ void LinkedList::traverse(void (*function)(Node *))
 }
 void LinkedList::sort()
 {
-    
+    for(int k = 0; k<expressionCount;k++)
+    {
+        for(int i = 0;i<expressionCount-1;i++)
+        {
+            int j = i + 1;
+            if((*this)[i].getExponent() < (*this)[j].getExponent())
+            {
+                Node * temp = &(*this)[i];
+                Node * temp2 = &(*this)[j];
+                if(i>0)
+                {
+                    Node * temp3 = &(*this)[i-1];
+                    temp->setNextNode(temp2->getNextNode());
+                    temp2->setNextNode(temp);
+                    temp3->setNextNode(temp2);
+                }
+                else
+                {
+                    temp->setNextNode(temp2->getNextNode());
+                    temp2->setNextNode(temp);
+                    head = temp2;
+                }
+            }
+            i++;
+        }
+    }
 }
+
 void LinkedList::reverse()
 {
     LinkedList nList;
