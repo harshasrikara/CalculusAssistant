@@ -155,7 +155,14 @@ void Node::setExpression()
     {
         if(outerCoefficient < 0)
         {
-            output = "- " + std::to_string(outerCoefficient*-1) + output;
+            if(outerCoefficient == -1)
+            {
+                output = "- " + output;
+            }
+            else
+            {
+                output = "- " + std::to_string(outerCoefficient*-1) + output;
+            }
         }
         else
         {
@@ -227,7 +234,10 @@ void Node::derive()
         outerCoefficient = outerCoefficient*innerCoefficient;
     }
     outerCoefficient = outerCoefficient*exponent;
-    exponent = exponent-1;
+    if(getTrigIdentifier()=="")
+    {
+        exponent = exponent-1;
+    }
 }
 
 int Node::check(std::string row,std::string wordToBeFound)
@@ -454,6 +464,32 @@ void LinkedList::traverse(void (*function)(Node *))
 }
 void LinkedList::sort()
 {
+    std::vector<Node*> nodeList;
+    while(head!=nullptr)
+    {
+        nodeList.push_back(head);
+        head = head->getNextNode();
+    }
+    
+    for(int i =0;i<nodeList.size();i++)
+    {
+        for(int j =0;j<nodeList.size()-1;j++)
+        {
+            if(nodeList[j] < nodeList[j+1])
+            {
+                std::swap(nodeList[i],nodeList[j]);
+            }
+        }
+    }
+    
+    expressionCount = 0;
+    
+    for(int i =0;i<nodeList.size();i++)
+    {
+        addNode(nodeList[i]);
+    }
+    
+    /*
     for(int k = 0; k<expressionCount;k++)
     {
         for(int i = 0;i<expressionCount-1;i++)
@@ -480,6 +516,7 @@ void LinkedList::sort()
             i++;
         }
     }
+     */
 }
 
 void LinkedList::reverse()
@@ -528,8 +565,10 @@ std::ostream &LinkedList::print(std::ostream &out) const
     while(hold!=nullptr)
     {
         //std::cout<<"Entered"<<std::endl;
-
-        out << *hold;
+        
+        /* changes to output prompt made here */
+        
+        out << *hold/* << "  " << hold->getExponent() << "   "*/;
         hold = hold->getNextNode();
     }
     return out;
