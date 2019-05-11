@@ -1,0 +1,14 @@
+Original Equation ->+ 3x^2 + 2x + 1
+Derivative ->+ 6x + 2 
+Original Equation ->+ x^-2 + 3x + 4
+Derivative ->+ 3 - 2x^-3 
+Original Equation ->+ 4x - x^3
+Derivative ->- 3x^2 + 4 
+Original Equation ->+ 3sin x + cos x
+Derivative ->- sin x - 3sin x 
+Original Equation ->+ 1 - cos 4x
+Derivative ->+ 4sin 4x 
+Original Equation ->+ 3x^4 - 6x^2 + tan 10x
+Derivative ->+ 12x^3 - 12x + 10sec^2 10x 
+Original Equation ->+ 4x^7 - cos x + 3tan x
+Derivative ->+ 28x^6 + sin x + 3sec^2 x 

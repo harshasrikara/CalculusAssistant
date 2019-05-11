@@ -83,6 +83,8 @@ void readLine(std::string file, LinkedList &derivativeCalc)
     std::istringstream lineFinder(file);
     std::string output = "";
     
+    std::ofstream outputFile("deriveIt.txt");
+    
     //cycle through all the lines in a string
     for (std::string line; std::getline(lineFinder, line);)
     {
@@ -106,6 +108,7 @@ void readLine(std::string file, LinkedList &derivativeCalc)
         }
         
         std::cout << "Original Equation ->" << output <<std::endl;
+        outputFile<< "Original Equation ->" << output <<std::endl;
 
         while(check(output.substr(1),"+") != -1 || check(output.substr(1),"-") != -1)
         {
@@ -138,6 +141,7 @@ void readLine(std::string file, LinkedList &derivativeCalc)
         //std::cout<<derivativeCalc.getCount()<<std::endl;
         derivativeCalc.sort();
         std::cout<< "Derivative ->" << derivativeCalc<<std::endl;
+        outputFile<<"Derivative ->" << derivativeCalc<<std::endl;
         
         //std::cout<<derivativeCalc[0]<<std::endl;
     }
