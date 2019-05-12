@@ -85,6 +85,10 @@ void readLine(std::string file, LinkedList &derivativeCalc)
     
     std::ofstream outputFile("deriveIt.txt");
     
+    outputFile << "This is a derivative calulator"<<std::endl;
+    outputFile << "Enter the original equations in the other text file and the derivatives will be logged here"<<std::endl;
+    outputFile << "Capabilities include:\nPower Rule\nTrig Functions\nPositive/Negative signs"<<std::endl;
+    
     //cycle through all the lines in a string
     for (std::string line; std::getline(lineFinder, line);)
     {
@@ -92,12 +96,14 @@ void readLine(std::string file, LinkedList &derivativeCalc)
         
         output = line;
         //adds a qualifying + sign to the beginning
-        if(isdigit(output[0]) || output[0] == 's' || output[0] == 'c' || output[0] == 'x')
+        //checks if it starts with a digit or an s,c,x or t
+        if(isdigit(output[0]) || output[0] == 's' || output[0] == 'c' || output[0] == 'x' || output[0] == 't')
         {
             output = "+ " + output;
         }
-        //break at end case
         
+        //break at end case
+        //basically checks to see if any other expressions are left
         if(output[0] != '+' && output[0] != '-')
         {
             break;
@@ -107,16 +113,16 @@ void readLine(std::string file, LinkedList &derivativeCalc)
             break;
         }
         
-        std::cout << "Original Equation ->" << output <<std::endl;
-        outputFile<< "Original Equation ->" << output <<std::endl;
+        std::cout << "Original Equation ->" << output <<std::endl; //console log
+        outputFile<< "Original Equation ->" << output <<std::endl; //output file log
 
         while(check(output.substr(1),"+") != -1 || check(output.substr(1),"-") != -1)
         {
             std::string expression;
             if(check(output,"x") != -1)
             {
-                expression = readExpression(output);
-                output = output.substr(expression.length());
+                expression = readExpression(output); //basically from one operator sign to the next
+                output = output.substr(expression.length()); //gets the next expressions
                 
                 //debug statements
                 //std::cout << "expression ->" << expression <<std::endl;
@@ -152,13 +158,14 @@ void insertNode(std::string file, LinkedList &derivativeCalc)
     //std::cout << "Element ->" << file <<std::endl;
 }
 
+//reads from one operator sign to the next
 std::string readExpression(std::string output)
 {
     std::string temp;
     bool firstOperator = false;
     bool exponent = false;
     
-    for(char t:output)
+    for(char t:output) //cycles through the input string
     {
         if(!firstOperator)
         {
@@ -166,24 +173,24 @@ std::string readExpression(std::string output)
             firstOperator = !firstOperator;
             continue;
         }
-        if(t=='^')
+        if(t=='^') //when an exponenet is detected
         {
             exponent = true;
         }
         if(exponent)
         {
-            if(t == ' ')
+            if(t == ' ') //if the terms after the exponenet is not a negative sign but a space then break
             {
                 break;
             }
         }
-        if(t == '+' || t == '-')
+        if(t == '+' || t == '-') //break statement when the next operator is seen
         {
-            if(!exponent)
+            if(!exponent) //avoids breaking if the operator is in a negative exponenet
             {
                 break;
             }
-            else
+            else //flip exponenet sign
             {
                 exponent = !exponent;
             }
@@ -193,6 +200,7 @@ std::string readExpression(std::string output)
     return temp;
 }
 
+//checks to see if there exist more than one x in a string
 bool ifMultipleX(std::string file)
 {
     int t = 0;
