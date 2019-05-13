@@ -145,9 +145,12 @@ void readLine(std::string file, LinkedList &derivativeCalc)
             }
         }
         //std::cout<<derivativeCalc.getCount()<<std::endl;
+        
+        //orders the terms in the derivative in order of decreasing exponent.
         derivativeCalc.sort();
-        std::cout<< "Derivative ->" << derivativeCalc<<std::endl;
-        outputFile<<"Derivative ->" << derivativeCalc<<std::endl;
+        
+        std::cout<< "Derivative ->" << derivativeCalc<<std::endl; //console log
+        outputFile<<"Derivative ->" << derivativeCalc<<std::endl; //output log
         
         //std::cout<<derivativeCalc[0]<<std::endl;
     }
