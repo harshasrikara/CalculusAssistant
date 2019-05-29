@@ -1,3 +1,9 @@
+This is a derivative calulator
+Enter the original equations in the other text file and the derivatives will be logged here
+Capabilities include:
+Power Rule
+Trig Functions
+Positive/Negative signs
 Original Equation ->+ 3x^2 + 2x + 1
 Derivative ->+ 6x + 2 
 Original Equation ->+ x^-2 + 3x + 4

@@ -6,6 +6,15 @@
 //  Copyright © 2019 Harsha Srikara. All rights reserved.
 //
 
+/*
+ This assignment is done by students in a typical second-third semester course
+ It is designed to be a semester/ half semester long project that requires
+ complete knowledge of the language and tools available.
+ This specific project was assigned to students in the university of texas at dallas
+ in their introduction to computer science course typically taken by engineering/CS students
+ in their second semester of CS coursework
+ */
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -22,7 +31,6 @@ bool ifMultipleX(std::string file);
 void insertNode(std::string file, LinkedList &derivativeCalc);
 
 int main(int argc, const char * argv[]) {
-    
     std::cout<<"Enter the filename: ";
     std::string file;
     //std::getline(std::cin,file);
