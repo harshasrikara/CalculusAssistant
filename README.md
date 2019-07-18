@@ -18,7 +18,8 @@ Ability to derive trig functions
 ##### Requirements
 There must be a space on either side of each operation. 
 When using a trig function, there must be a space after the trig function
-All number can be positive or negative. 
+All number can be positive or negative.
+Only sin, cos and tan are supported within the program
 
 ### Up Next
  - Ability to handle fractions
