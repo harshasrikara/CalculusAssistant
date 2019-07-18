@@ -8,6 +8,8 @@ Implementation of a linked list to hold entries of each node.
 Multiple operators were overloaded
 Ability to derive trig functions
 
+### Format Required For Input
+
 ### Up Next
  - Ability to handle fractions
  - Ability to handle Log data
