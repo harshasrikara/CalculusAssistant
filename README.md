@@ -14,6 +14,8 @@ Ability to derive trig functions
  - 6x + 3
  - -9x^2 + 2x^-3
  - 3sin x + -4cos 5x + 2
+ 
+ Cannot yet handle log functions, inverse trig or sec/cot/csc
 
 ##### Requirements
 There must be a space on either side of each operation. 
