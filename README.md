@@ -3,6 +3,7 @@
 This project was designed to calculate derivatives.
 Input is written in a text file and the derivative will be logged to console.
 Can be optionally logged to a text file.
+Eventually will add in command line arguments for allowing custom name creation.
 
 ### Features
 Implementation of a linked list to hold entries of each node.
